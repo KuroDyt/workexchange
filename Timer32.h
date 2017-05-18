@@ -1,18 +1,26 @@
 #ifndef Timer32_h
 #define Timer32_h
-#include <driver/adc.h>
+#include <stdio.h>
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "freertos/xtensa.api"
+#include "freertos/queue.h"
+#include "esp_attr.h"
+#include "esp_err.h"
+#include "esp_wifi.h"
+#include "esp_system.h"
+#include "esp_event.h"
+#include "esp_event_loop.h"
+#include "nvs_flash.h"
+#include "driver/gpio.h"
+#include "driver/adc.h"
+#include "driver/ledc.h"
+
+
 
 namespace Timer32 {
-	extern unsigned long time_units;
 	extern void (*func)();
-	extern volatile unsigned long count;
-	extern volatile char overflowing;
-	extern volatile unsigned int tcnt2;
 
-	void set(unsigned long ms, void (*func)());
-	void set(unsigned long units, double resolution, void (*f)());
-	void start();
-	void stop();
-	void _overflow();
-}
+	void set(unsigned long ms, void (*func)(), interrupt);
+
 #endif
