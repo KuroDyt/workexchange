@@ -38,7 +38,7 @@ void toggle_GAL_SIG(void){
 }
 
 void TIMER_SETUP(){
-	Timer32::set(0, 0, , TIMER32OVERFLOW, interrupt);
+	Timer32::set(0, 0, , TIMER32OVERFLOW, interrupt, );
 }
 
 void setup(){
@@ -63,6 +63,7 @@ void setup(){
 	TXBuf[15] = 0x00;
 	TXBuf[2 * NUMCHANNELS + HEADERLEN] = 0x01;
 
+	TIMER_SETUP();
 
 	<send data>
 

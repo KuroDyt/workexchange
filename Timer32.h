@@ -21,6 +21,6 @@
 namespace Timer32 {
 	extern void (*func)();
 
-	void set(unsigned long ms, void (*func)(), interrupt);
+	void start(timer_group_t, timer_idx_t, void (*func)(), void *arg, int flags, *timer_isr_handle_t);
 
 #endif
