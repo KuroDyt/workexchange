@@ -1,9 +1,12 @@
 import socket
-target_host = "0.0.0.0"
-target_port = 2002
+
+target_host = raw_input("Give the host: ")
+
+target_port = input("Give me the port: ")
 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client.connect((target_host,target_port))
-client.send("Hello")
+client.send("GET / HTTP/1.1\r\nHost: google.com\r\n\r\n")
 response = client.recv(4096)
 print response
+exit(0)
