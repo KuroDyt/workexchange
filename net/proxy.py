@@ -16,7 +16,7 @@ def receive_from(connection):
 
 	buffer = ""
 
-	connection.settimeout(2)
+	connection.settimeout(10)
 
 	try:
 		while True:
@@ -66,7 +66,7 @@ def proxy_handler(client_socket, remote_host, remote_port, receive_first):
 
 		if len(remote_buffer):
 
-			print "[<==] Rceived %d bytes from remote." % len(remote_buffer)
+			print "[<==] Received %d bytes from remote." % len(remote_buffer)
 			hexdump(remote_buffer)
 
 			remote_buffer = response_handler(remote_buffer)
@@ -103,6 +103,8 @@ def server_loop(local_host, local_port, remote_host, remote_port, receive_first)
 		print "[==>] Received incoming connection from %s:%d" % (addr[0],addr[1])
 		proxy_thread = threading.Thread(target=proxy_handler,args=(client_socket, remote_host, remote_port, receive_first))
 		proxy_thread.start()
+		break
+		exit(0)
 
 def main():
 
